@@ -27,39 +27,45 @@
 
 package ch.idsia.scenarios;
 
+import ch.idsia.agents.Agent;
+import ch.idsia.agents.AgentsPool;
+import ch.idsia.agents.controllers.FOAJAgent;
+import ch.idsia.agents.controllers.ForwardAgent;
+import ch.idsia.benchmark.mario.environments.Environment;
+import ch.idsia.benchmark.mario.environments.MarioEnvironment;
 import ch.idsia.benchmark.tasks.BasicTask;
+import ch.idsia.benchmark.tasks.PredictionStepTask;
+import ch.idsia.benchmark.tasks.LearningTask;
 import ch.idsia.tools.MarioAIOptions;
 
 /**
- * Created by IntelliJ IDEA. User: Sergey Karakovskiy, sergey at idsia dot ch Date: Mar 17, 2010 Time: 8:28:00 AM
- * Package: ch.idsia.scenarios
+ * Created by IntelliJ IDEA. User: Sergey Karakovskiy, sergey at idsia dot ch
+ * Date: Mar 17, 2010 Time: 8:28:00 AM Package: ch.idsia.scenarios
  */
-public final class Main
-{
-public static void main(String[] args)
-{
-//        final String argsString = "-vis on";
-    final MarioAIOptions marioAIOptions = new MarioAIOptions(args);
-//        final Environment environment = new MarioEnvironment();
-//        final Agent agent = new ForwardAgent();
-//        final Agent agent = marioAIOptions.getAgent();
-//        final Agent a = AgentsPool.loadAgent("ch.idsia.controllers.agents.controllers.ForwardJumpingAgent");
-    final BasicTask basicTask = new BasicTask(marioAIOptions);
-//        for (int i = 0; i < 10; ++i)
-//        {
-//            int seed = 0;
-//            do
-//            {
-//                marioAIOptions.setLevelDifficulty(i);
-//                marioAIOptions.setLevelRandSeed(seed++);
-    basicTask.setOptionsAndReset(marioAIOptions);
-//    basicTask.runSingleEpisode(1);
-    basicTask.doEpisodes(1,true,1);
-//    System.out.println(basicTask.getEnvironment().getEvaluationInfoAsString());
-//            } while (basicTask.getEnvironment().getEvaluationInfo().marioStatus != Environment.MARIO_STATUS_WIN);
-//        }
-//
-    System.exit(0);
-}
+public final class Main {
+	public static void main(String[] args) {
+		final String argsString = "-vis on";
+		final MarioAIOptions marioAIOptions = new MarioAIOptions(args);
+		final Agent agent = new FOAJAgent(new PredictionStepTask(marioAIOptions));
+		// final Agent agent = marioAIOptions.getAgent();
+//		final Agent agent = AgentsPool
+//				.loadAgent("ch.idsia.controllers.agents.controllers.ForwardJumpingAgent", true);
+		marioAIOptions.setAgent(agent);
+		final BasicTask basicTask = new BasicTask(marioAIOptions);
+		for (int i = 0; i < 10; ++i) {
+			int seed = 0;
+			do {
+				marioAIOptions.setLevelDifficulty(i);
+				marioAIOptions.setLevelRandSeed(seed++);
+				basicTask.setOptionsAndReset(marioAIOptions);
+				basicTask.runSingleEpisode(1);
+				basicTask.doEpisodes(1, true, 1);
+				System.out.println(basicTask.getEnvironment()
+						.getEvaluationInfoAsString());
+			} while (basicTask.getEnvironment().getEvaluationInfo().marioStatus != Environment.MARIO_STATUS_WIN);
+		}
+
+		System.exit(0);
+	}
 
 }
