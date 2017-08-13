@@ -1,0 +1,36 @@
+1 - understand the platform (done)
+2 - log data (not needed, use recorder)
+3 - understand how to use ES (done)
+4 - understand how ES works (done)
+
+5 - loop
+  create fitness function (currently using the default calculation of the total score)
+	* the only fitness supposed to be used is the total score.
+  implement improviments or increase the dificult
+	* canceled, the ES algorithm isn't enough to teatch mario without changing the platform basic structure. 
+
+--------  
+  
+Doubts
+
+It is possible to perform an action and recouver the previos state of the environment?
+	* no, it isn't
+How to calculate fitness without performing action on the environment?
+	* the only fitness supposed to be used is the total score.
+ES cannot be used to predict the next movement?
+	* ES may be used to train the IA model (mlp or something else).
+
+
+--------
+--------  
+
+1 - understand the psoRecombine of the MLP (in progress)
+2 - understand how the recorder works to get an episode data (done, actually the recorder only gets the actions withou any environment information)
+3 - train a mlp with data produced by human player (maybe will be aborted due to the time that may be spent to be accomplished)
+4 - train a agent to resolve the most easy scenarie possible (in progress)
+4 - try to improve the mlp trained with data produced by human player using ES
+5 - use ES to train a dumb mlp
+
+-------- 
+
+Doubts
