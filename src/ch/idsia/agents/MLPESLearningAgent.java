@@ -123,7 +123,7 @@ public void init()
 
 public boolean[] getAction()
 {
-    System.out.println("agent = " + agent);
+    //System.out.println("agent = " + agent);
     return agent.getAction();
 }
 

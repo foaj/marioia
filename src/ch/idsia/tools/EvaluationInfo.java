@@ -107,19 +107,22 @@ public int computeBasicFitness()
 
 public int computeWeightedFitness(SystemOfValues sov)
 {
+	System.out.println(String.format("distancePassedCells = %s, distancePassedPhys = %s, sov.distance = %s"
+			,distancePassedCells , distancePassedPhys, sov.distance));
+	
     return
-            distancePassedPhys * sov.distance +
-                    flowersDevoured * sov.flowerFire +
-                    marioStatus * sov.win +
-                    marioMode * sov.mode +
-                    mushroomsDevoured * sov.mushroom +
-                    greenMushroomsDevoured * sov.greenMushroom +
-                    coinsGained * sov.coins +
-                    hiddenBlocksFound * sov.hiddenBlock +
-                    killsTotal * sov.kills +
-                    killsByStomp * sov.killedByStomp +
-                    killsByFire * sov.killedByFire +
-                    killsByShell * sov.killedByShell +
+                distancePassedPhys * sov.distance +
+                    //flowersDevoured * sov.flowerFire +
+                    //marioStatus * sov.win +
+                    //marioMode * sov.mode +
+                    //mushroomsDevoured * sov.mushroom +
+                    //greenMushroomsDevoured * sov.greenMushroom +
+                    //coinsGained * sov.coins +
+                    //hiddenBlocksFound * sov.hiddenBlock +
+                    //killsTotal * sov.kills +
+                    //killsByStomp * sov.killedByStomp +
+                    //killsByFire * sov.killedByFire +
+                    //killsByShell * sov.killedByShell +
                     timeLeft * sov.timeLeft;
 }
 

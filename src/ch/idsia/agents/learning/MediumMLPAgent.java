@@ -30,6 +30,7 @@ package ch.idsia.agents.learning;
 import ch.idsia.agents.Agent;
 import ch.idsia.agents.controllers.BasicMarioAIAgent;
 import ch.idsia.benchmark.mario.environments.Environment;
+import ch.idsia.benchmark.mario.environments.MarioEnvironment;
 import ch.idsia.evolution.Evolvable;
 import ch.idsia.evolution.MLP;
 
@@ -102,6 +103,10 @@ public boolean[] getAction()
     inputs[inputs.length - 2] = isMarioAbleToJump ? 1 : 0;
     inputs[inputs.length - 1] = 1;
     double[] outputs = mlp.propagate(inputs);
+//    MarioEnvironment environment = MarioEnvironment.getInstance();
+//    environment.getEvaluationInfo().clone();
+//    double[] outputScore = new double[6];
+//    mlp.backPropagate();
     boolean[] action = new boolean[numberOfOutputs];
     for (int i = 0; i < action.length; i++)
     {

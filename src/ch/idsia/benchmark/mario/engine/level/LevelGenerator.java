@@ -384,18 +384,18 @@ private static void buildCeiling(int x0, int length)
 
 private static void addEnemy(int x, int y)
 {
-    if (!creaturesRandom.canAdd())
-        return;
-
-    int dx = (int) dxRnd.nextGaussian();
-    int creatureKind = creaturesRandom.nextCreature();
-    if (creatureKind != Sprite.KIND_UNDEF)
-    {
-        if (level.setSpriteTemplate(x + dx, y, new SpriteTemplate(creatureKind)))
-            ++counters.creatures;
-        else
-            creaturesRandom.increaseLastCreature();
-    }
+//    if (!creaturesRandom.canAdd())
+//        return;
+//
+//    int dx = (int) dxRnd.nextGsssssssaussian();
+//    int creatureKind = creaturesRandom.nextCreature();
+//    if (creatureKind != Sprite.KIND_UNDEF)
+//    {
+//        if (level.setSpriteTemplate(x + dx, y, new SpriteTemplate(creatureKind)))
+//            ++counters.creatures;
+//        else
+//            creaturesRandom.increaseLastCreature();
+//    }
 }
 
 //x0 - first block to start from

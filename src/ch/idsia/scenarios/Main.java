@@ -29,12 +29,13 @@ package ch.idsia.scenarios;
 
 import ch.idsia.agents.Agent;
 import ch.idsia.agents.AgentsPool;
+import ch.idsia.agents.MLPESLearningAgent;
 import ch.idsia.agents.controllers.FOAJAgent;
 import ch.idsia.agents.controllers.ForwardAgent;
+import ch.idsia.agents.learning.MediumMLPAgent;
 import ch.idsia.benchmark.mario.environments.Environment;
 import ch.idsia.benchmark.mario.environments.MarioEnvironment;
 import ch.idsia.benchmark.tasks.BasicTask;
-import ch.idsia.benchmark.tasks.PredictionStepTask;
 import ch.idsia.benchmark.tasks.LearningTask;
 import ch.idsia.tools.MarioAIOptions;
 
@@ -44,15 +45,28 @@ import ch.idsia.tools.MarioAIOptions;
  */
 public final class Main {
 	public static void main(String[] args) {
-		final String argsString = "-vis on";
-		final MarioAIOptions marioAIOptions = new MarioAIOptions(args);
-		final Agent agent = new FOAJAgent(new PredictionStepTask(marioAIOptions));
-		// final Agent agent = marioAIOptions.getAgent();
-//		final Agent agent = AgentsPool
-//				.loadAgent("ch.idsia.controllers.agents.controllers.ForwardJumpingAgent", true);
-		marioAIOptions.setAgent(agent);
-		final BasicTask basicTask = new BasicTask(marioAIOptions);
-		for (int i = 0; i < 10; ++i) {
+		boolean setLearningAgent = true;
+		
+		MarioAIOptions marioAIOptions;
+		Agent agent;
+		BasicTask basicTask;
+				
+		if(!setLearningAgent){
+			String argsString = "-vis on";
+			marioAIOptions = new MarioAIOptions(argsString);
+			agent = marioAIOptions.getAgent();
+			basicTask = new BasicTask(marioAIOptions);
+		}
+		else{
+			String argsString = "-vis off";
+			marioAIOptions = new MarioAIOptions(argsString);
+			agent = new MediumMLPAgent();
+			marioAIOptions.setAgent(agent);
+			basicTask = new LearningTask(marioAIOptions);
+			//((MLPESLearningAgent)agent).setLearningTask((LearningTask)basicTask);
+		}
+		
+		for (int i = 0; i < 1; ++i) {
 			int seed = 0;
 			do {
 				marioAIOptions.setLevelDifficulty(i);
