@@ -100,30 +100,41 @@ public EvaluationInfo()
     System.arraycopy(EvaluationInfo.zeros, 0, retFloatArray, 0, EvaluationInfo.numberOfElements);
 }
 
+static int bestDistancePassedPhys = 0;
+
 public int computeBasicFitness()
 {
-    return distancePassedPhys - timeSpent + coinsGained + marioStatus * marioSystemOfValues.win;
+	
+	if(distancePassedPhys > bestDistancePassedPhys) {
+		bestDistancePassedPhys = distancePassedPhys;
+		System.out.println(String.format("currentDistancePassed = %s, bestDistancePassed = %s"
+				,distancePassedCells , bestDistancePassedPhys));
+	}
+    return distancePassedPhys - timeSpent + /*coinsGained +*/ marioStatus * marioSystemOfValues.win;
 }
+
+
 
 public int computeWeightedFitness(SystemOfValues sov)
 {
-	System.out.println(String.format("distancePassedCells = %s, distancePassedPhys = %s, sov.distance = %s"
-			,distancePassedCells , distancePassedPhys, sov.distance));
 	
-    return
+	return computeBasicFitness();
+	
+	
+    /*return
                 distancePassedPhys * sov.distance +
-                    //flowersDevoured * sov.flowerFire +
-                    //marioStatus * sov.win +
-                    //marioMode * sov.mode +
-                    //mushroomsDevoured * sov.mushroom +
-                    //greenMushroomsDevoured * sov.greenMushroom +
-                    //coinsGained * sov.coins +
-                    //hiddenBlocksFound * sov.hiddenBlock +
-                    //killsTotal * sov.kills +
-                    //killsByStomp * sov.killedByStomp +
-                    //killsByFire * sov.killedByFire +
-                    //killsByShell * sov.killedByShell +
-                    timeLeft * sov.timeLeft;
+                    flowersDevoured * sov.flowerFire +
+                    marioStatus * sov.win +
+                    marioMode * sov.mode +
+                    mushroomsDevoured * sov.mushroom +
+                    greenMushroomsDevoured * sov.greenMushroom +
+                    coinsGained * sov.coins +
+                    hiddenBlocksFound * sov.hiddenBlock +
+                    killsTotal * sov.kills +
+                    killsByStomp * sov.killedByStomp +
+                    killsByFire * sov.killedByFire +
+                    killsByShell * sov.killedByShell +
+                    timeLeft * sov.timeLeft;*/
 }
 
 public int computeWeightedFitness()

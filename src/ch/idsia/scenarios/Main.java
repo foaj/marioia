@@ -30,14 +30,12 @@ package ch.idsia.scenarios;
 import ch.idsia.agents.Agent;
 import ch.idsia.agents.AgentsPool;
 import ch.idsia.agents.MLPESLearningAgent;
-import ch.idsia.agents.controllers.FOAJAgent;
-import ch.idsia.agents.controllers.ForwardAgent;
 import ch.idsia.agents.learning.MediumMLPAgent;
 import ch.idsia.benchmark.mario.environments.Environment;
-import ch.idsia.benchmark.mario.environments.MarioEnvironment;
 import ch.idsia.benchmark.tasks.BasicTask;
 import ch.idsia.benchmark.tasks.LearningTask;
 import ch.idsia.tools.MarioAIOptions;
+import ch.idsia.utils.wox.serial.Easy;
 
 /**
  * Created by IntelliJ IDEA. User: Sergey Karakovskiy, sergey at idsia dot ch
@@ -60,10 +58,13 @@ public final class Main {
 		else{
 			String argsString = "-vis off";
 			marioAIOptions = new MarioAIOptions(argsString);
-			agent = new MediumMLPAgent();
+			agent = (Agent) Easy.load("evolved-progress-MLPESLearningAgent773-uid-2017-08-14_17-38-22.XML");//new MLPESLearningAgent();
 			marioAIOptions.setAgent(agent);
 			basicTask = new LearningTask(marioAIOptions);
-			//((MLPESLearningAgent)agent).setLearningTask((LearningTask)basicTask);
+			/*((MLPESLearningAgent)agent).setLearningTask((LearningTask)basicTask);
+			((MLPESLearningAgent)agent).init();
+			((MLPESLearningAgent)agent).learn();*/
+			
 		}
 		
 		for (int i = 0; i < 1; ++i) {
