@@ -26,10 +26,9 @@ ES cannot be used to predict the next movement?
 
 1 - understand the psoRecombine of the MLP (in progress)
 2 - understand how the recorder works to get an episode data (done, actually the recorder only gets the actions withou any environment information)
-3 - train a mlp with data produced by human player (maybe will be aborted due to the time that may be spent to be accomplished)
-4 - train a agent to resolve the most easy scenarie possible (in progress)
-4 - try to improve the mlp trained with data produced by human player using ES
-5 - use ES to train a dumb mlp
+3 - train a agent to resolve the most easy scenarie possible (done)
+4 - train a mlp with data produced by human player (maybe will be aborted due to the time that may be spent to be accomplished)
+
 
 -------- 
 
